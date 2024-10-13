@@ -1,0 +1,38 @@
+﻿@model _23DH114638_MyStore.Models.Category
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 style="background-color:#0094ff">Xóa Danh mục</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <h4 class="bg-danger">Bạn muốn xóa danh mục này ?</h4>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <div class="control-label col-md-6" style=" font-size:25px;font-weight:800 ; font-family:'Lucida Sans', 'Lucida Sans Regular' , 'Lucida Grande' , 'Lucida Sans Unicode' , Geneva, Verdana, sans-serif">Tên danh mục</div>
+                <div class="col-md-10" style="font-size: 18px; font-weight: 600; padding: 15px 0px; margin-top: 4px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">@Html.DisplayFor(model => model.CategoryName)</div>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10" style="font-size: 18px; font-weight: 600; padding: 15px 0px; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+                <input type="submit" value="Xóa" class="btn btn-outline-success" />
+                @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-outline-success btn-md" })
+            </div>
+        </div>
+    </div>
+}

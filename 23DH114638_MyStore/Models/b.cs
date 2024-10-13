@@ -12,10 +12,10 @@ namespace _23DH114638_MyStore.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class b
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public User()
+        public b()
         {
             this.Customers = new HashSet<Customer>();
         }

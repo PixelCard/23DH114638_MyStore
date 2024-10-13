@@ -235,7 +235,7 @@
           <Property Name="version" Type="Int32" />
           <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="b">
           <Key>
             <PropertyRef Name="Username" />
           </Key>
@@ -269,7 +269,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_User_Customer">
-          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User" Type="MyStoreModel.b" Multiplicity="1" />
           <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
@@ -311,7 +311,7 @@
           <EntitySet Name="OrderDetails" EntityType="Self.OrderDetail" />
           <EntitySet Name="Products" EntityType="Self.Product" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
-          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="b" EntityType="MyStoreModel.b" />
           <AssociationSet Name="FK_Pro_Category" Association="Self.FK_Pro_Category">
             <End Role="Category" EntitySet="Categories" />
             <End Role="Product" EntitySet="Products" />
@@ -321,7 +321,7 @@
             <End Role="Order" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Customer" Association="Self.FK_User_Customer">
-            <End Role="User" EntitySet="Users" />
+            <End Role="User" EntitySet="b" />
             <End Role="Customer" EntitySet="Customers" />
           </AssociationSet>
           <AssociationSet Name="FK__OrderDeta__Order__3C69FB99" Association="Self.FK__OrderDeta__Order__3C69FB99">
@@ -405,8 +405,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="MyStoreModel.User">
+          <EntitySetMapping Name="b">
+            <EntityTypeMapping TypeName="MyStoreModel.b">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="Username" ColumnName="Username" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

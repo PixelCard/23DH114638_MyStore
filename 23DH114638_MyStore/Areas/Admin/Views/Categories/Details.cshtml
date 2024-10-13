@@ -1,0 +1,29 @@
+﻿@model _23DH114638_MyStore.Models.Category
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Thông tin chi tiết danh mục sản phẩm</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt style="font-size:25px;font-weight:800 ; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            @*@Html.DisplayNameFor(model => model.CategoryName)*@
+
+            Tên danh mục
+        </dt>
+
+        @* giá trị của trường dữ liệu category.name  *@
+        <dd style="font-size:18px;font-weight:800 ; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+            @Html.DisplayFor(model => model.CategoryName)
+        </dd>
+
+    </dl>
+</div>
+<p style="font-size:20px;font-weight:800 ;  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif">
+    @Html.ActionLink("Cập nhật", "Edit", new { id = Model.CategoryID }, new { @class = "btn btn-outline-success btn-md" }) 
+    @Html.ActionLink("Quay lại danh sách", "Index", null, new { @class = "btn btn-outline-success btn-md" })
+</p>

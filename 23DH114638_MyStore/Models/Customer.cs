@@ -29,6 +29,6 @@ namespace _23DH114638_MyStore.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Order> Orders { get; set; }
-        public virtual User User { get; set; }
+        public virtual b User { get; set; }
     }
 }

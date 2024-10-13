@@ -1,0 +1,39 @@
+﻿@model IEnumerable<_23DH114638_MyStore.Models.Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2 class="text-bg-dark">Danh Mục Sản Phẩm</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create",null,new {@class ="btn btn-outline-success"})
+</p>
+
+<table cellpadding="1" cellspacing="3" border="1" class="table bg-info col-lg-8 col-md-6 col-sm-3">
+    <tr>
+        <th class="col-lg-5 col-md-4 col-sm-2" style="background-color:aquamarine">
+            @*@Html.DisplayNameFor(model => model.CategoryName)*@
+            <h1 style="color:#000000;font-size:30px;font-weight:700">Tên Danh Mục</h1>  
+            
+        </th>
+
+        <th class="col-lg-5 col-md-4 col-sm-2" style="background-color:aquamarine">
+
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.ActionLink("Cập nhật", "Edit", new { id = item.CategoryID }, new { @class = "btn btn-outline-success btn-md" })
+            @Html.ActionLink("Xóa", "Delete", new { id = item.CategoryID }, new { @class = "btn btn-outline-success btn-md" })
+        </td>
+    </tr>
+}
+
+</table>
