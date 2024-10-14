@@ -7,19 +7,15 @@
 
 <h2 class="text-bg-dark">Danh Mục Sản Phẩm</h2>
 
-<p>
-    @Html.ActionLink("Thêm mới", "Create",null,new {@class ="btn btn-outline-success"})
-</p>
-
 <table cellpadding="1" cellspacing="3" border="1" class="table bg-info col-lg-8 col-md-6 col-sm-3">
     <tr>
-        <th class="col-lg-5 col-md-4 col-sm-2" style="background-color:aquamarine">
+        <th class="col-lg-4 col-md-2 col-sm-2" style="background-color:aquamarine">
             @*@Html.DisplayNameFor(model => model.CategoryName)*@
-            <h1 style="color:#000000;font-size:30px;font-weight:700">Tên Danh Mục</h1>  
-            
+            <h1 style="color:#000000;font-size:30px;font-weight:700">Tên Danh Mục</h1>
+
         </th>
 
-        <th class="col-lg-5 col-md-4 col-sm-2" style="background-color:aquamarine">
+        <th class="col-lg-4 col-md-2 col-sm-2" style="background-color:aquamarine">
 
         </th>
     </tr>
@@ -37,3 +33,7 @@
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-outline-success" })
+</p>
