@@ -1,0 +1,166 @@
+﻿@model _23DH114638_MyStore.Models.ViewModel.ProductSearchVM
+@using PagedList.Mvc;
+
+<head>
+    <style>
+        *{
+            padding:0;
+            margin:0;
+        }
+
+        img {
+            max-width: 450px;
+            min-height: 400px;
+        }
+
+        .pagination-container {
+        }
+
+            .pagination-container .pagination > li {
+                margin: 12px;
+                border: 2px solid #808080;
+                padding: 6px;
+                border-radius: 6px;
+                width: 54px;
+                color: #ff0000;
+                text-align: center;
+                background-color: #ffffff;
+            }
+
+                .pagination-container .pagination > li > a {
+                    font-size: 21px;
+                    text-decoration: none;
+                }
+
+            .pagination-container .pagination .PagedList-skipToNext > a {
+                font-size: 21px;
+                text-decoration: none;
+                font-weight: 800;
+            }
+
+            .pagination-container .pagination .PagedList-skipToPrevious > a {
+                font-size: 21px;
+                text-decoration: none;
+                font-weight: 800;
+            }
+
+        .page_Items-btnAddMoreProduct {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            --bs-gutter-x:none;
+        }
+
+    </style>
+</head>
+
+@if (Model.Products != null && Model.Products.Any())
+{
+
+    <h2 class="text-bg-dark container-fluid">Danh Sách Sản Phẩm</h2>
+
+    <table cellpadding="1" cellspacing="3" border="1" class="table bg-info col-lg-8 col-md-6 col-sm-3 container-fluid">
+        <thead>
+            <tr>
+                <th class=" col-md-2 " style="background-color:aquamarine">
+                    @*@Html.DisplayNameFor(model => model.ProductPrice)*@
+                    Hình ảnh về sản phẩm
+                </th>
+
+
+
+                <th class=" col-md-2 " style="background-color:aquamarine">
+                    @*@Html.DisplayNameFor(model => model.ProductName)*@
+                    Tên Sản phẩm
+                </th>
+
+
+
+
+                <th class=" col-md-2 " style="background-color:aquamarine">
+                    @*@Html.DisplayNameFor(model => model.ProductImage)*@
+                    Giá Sản phẩm
+                </th>
+
+
+                <th class=" col-md-2 " style="background-color:aquamarine">
+                    @*@Html.DisplayNameFor(model => model.Category.CategoryName)*@
+                    Danh Mục
+                </th>
+
+
+                <th class="col-md-4" style="background-color:aquamarine">
+
+                </th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+
+            @foreach (var item in Model.Products)
+            {
+                <tr>
+
+                    <td>
+                        <img src="@Html.DisplayFor(modelItem => item.ProductImage)" />
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                    </td>
+
+
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                    </td>
+
+
+
+                    <td>
+                        @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID }, new { @class = "btn btn-outline-success btn-md" })
+                        @Html.ActionLink("Chi tiết sản phẩm", "Details", new { id = item.ProductID }, new { @class = "btn btn-outline-success btn-md" })
+                        @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID }, new { @class = "btn btn-outline-success btn-md" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    //Hiển thị phân trang
+    <div class="container page_Items-btnAddMoreProduct">
+        <div class="pagination-container">
+            @Html.PagedListPager(Model.Products, Page => Url.Action("Index", new
+            {
+                Page,
+                searchTerm = Model.SearchTerm,
+                minprice = Model.MinPrice,
+                maxprice = Model.MaxPrice,
+                sortOrder = Model.SortOrder
+            }))
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-9" style="margin-left:30px">
+                @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-outline-success btn-md" })
+            </div>
+
+        </div>
+    </div>
+
+}
+else
+{
+    <p>Can't find any ProductItems in Your Search</p>
+}
+

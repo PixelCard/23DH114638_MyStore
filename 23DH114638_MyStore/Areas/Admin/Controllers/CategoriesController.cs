@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using _23DH114638_MyStore.Models;
 
-namespace _23DH114638_MyStore.Areas.Admin.Controllers
+namespace _23DH114638_WebMayTinh.Areas.Admin.Controllers
 {
     public class CategoriesController : Controller
     {
@@ -69,7 +69,7 @@ namespace _23DH114638_MyStore.Areas.Admin.Controllers
         // GET: Lấy dữ liệu 1 danh mục đã có sao cho CategoryID  = id;
         public ActionResult Edit(int? id)
         {
-            //Details(id);
+            //return Details(id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

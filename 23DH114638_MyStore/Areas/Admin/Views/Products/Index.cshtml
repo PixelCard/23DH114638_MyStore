@@ -1,95 +1,124 @@
-﻿@model IEnumerable<_23DH114638_MyStore.Models.Product>
+﻿@model _23DH114638_MyStore.Models.ViewModel.ProductSearchVM
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
 }
 
+<html>
 <head>
+    <meta name="viewport" content="width=device-width" />
+
+
+    <title>Search</title>
+
+
     <style>
-        img{
-            max-width:450px;
-            min-height:400px;
+        .search-container {
+            padding-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .Form-Control {
+            width: 40%;
+            padding: 12px;
+            margin-bottom: 12px;
+            max-width: none;
+            position: relative;
+        }
+
+        .btn-Search {
+            margin-left: 30px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        .order-container{
+            text-align: center;
+            margin-bottom:6px;
         }
     </style>
 </head>
 
-<h2 class="text-bg-dark container-fluid">Danh Sách Sản Phẩm</h2>
-
-<table cellpadding="1" cellspacing="3" border="1" class="table bg-info col-lg-8 col-md-6 col-sm-3 container-fluid">
-    <tr>
-        <th class=" col-md-2 " style="background-color:aquamarine">
-            @*@Html.DisplayNameFor(model => model.ProductPrice)*@
-            Hình ảnh về sản phẩm
-        </th>
-
-
-
-        <th class=" col-md-2 " style="background-color:aquamarine">
-            @*@Html.DisplayNameFor(model => model.ProductName)*@
-            Tên Sản phẩm
-        </th>
-
-
-
-
-        <th class=" col-md-2 " style="background-color:aquamarine">
-            @*@Html.DisplayNameFor(model => model.ProductImage)*@
-            Giá Sản phẩm
-        </th>
-
-
-        <th class=" col-md-2 " style="background-color:aquamarine">
-            @*@Html.DisplayNameFor(model => model.Category.CategoryName)*@
-            Danh Mục
-        </th>
-
-
-        <th class="col-md-4" style="background-color:aquamarine">
-
-        </th>
-    </tr>
-
-    @foreach (var item in Model)
+<body>
+    @*Form Tìm kiếm*@
+    @using (Html.BeginForm("Index", "Products", FormMethod.Get))
     {
-        <tr>
-
-            <td>
-                <img src="@Html.DisplayFor(modelItem => item.ProductImage)" />
-            </td>
-
-
-
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductName)
-            </td>
+        <div class="form-group search-container">
+            @Html.TextBoxFor(m => m.SearchTerm, new
+            {
+                @class = "Form-Control",
+                placeholder = "Nhập Tên sản phẩm bạn cần tìm kiếm"
+            })
 
 
+            @Html.TextBoxFor(m => m.MaxPrice, new
+            {
+                @class = "Form-Control",
+                placeholder = "Nhập giá trị tối đa",
+                type = "number",
+            })
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.ProductPrice)
-            </td>
+            @Html.TextBoxFor(m => m.MinPrice, new
+            {
+                   @class = "Form-Control",
+                   placeholder = "Nhập giá trị tối thiểu",
+                   type = "number",
+            })
+
+            <button type="submit" class="btn btn-outline-success btn-md btn-Search">Tìm kiếm</button>
+        </div>
 
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.CategoryName)
-            </td>
+        //Tùy chọn sắp xếp
+        <div class="form-group order-container">
+
+            Sắp xếp theo
+            @Html.ActionLink("Tên Tăng dần", "Index", "Products", new
+            {
+                sortOrder = "name_asc",
+                searchTerm = Model.SearchTerm,
+                minPrice = Model.MinPrice,
+                maxPrice = Model.MaxPrice
+            }, null) |
 
 
+            @Html.ActionLink("Tên giảm dần", "Index", "Products", new
+            {
+                sortOrder = "name_desc",
+                searchTerm = Model.SearchTerm,
+                minPrice = Model.MinPrice,
+                maxPrice = Model.MaxPrice
+            }, null) |
 
-            <td>
-                @Html.ActionLink("Sửa", "Edit", new { id = item.ProductID } , new { @class = "btn btn-outline-success btn-md" }) 
-                @Html.ActionLink("Chi tiết sản phẩm", "Details", new { id = item.ProductID } , new { @class = "btn btn-outline-success btn-md" }) 
-                @Html.ActionLink("Xóa", "Delete", new { id = item.ProductID } , new { @class = "btn btn-outline-success btn-md" })
-            </td>
-        </tr>
+
+            @Html.ActionLink("Giá tăng dần", "Index", "Products", new
+            {
+                sortOrder = "price_asc",
+                searchTerm = Model.SearchTerm,
+                minPrice = Model.MinPrice,
+                maxPrice = Model.MaxPrice
+            }, null) |
+
+
+            @Html.ActionLink("Giá giảm dần", "Index", "Products", new
+            {
+                sortOrder = "price_desc",
+                searchTerm = Model.SearchTerm,
+                minPrice = Model.MinPrice,
+                maxPrice = Model.MaxPrice
+            }, null)
+        </div>
     }
-</table>
 
-<div class="form-group">
-    <div class="col-md-9" style="text-align:right; margin-left:30px">
-        @Html.ActionLink("Thêm mới", "Create", null, new { @class = "btn btn-outline-success btn-md" })
-     </div>
-</div>
+
+    @*Partial View Của Index*@
+    @Html.Partial("PVListProduct", Model)
+</body>
+</html>
+
+

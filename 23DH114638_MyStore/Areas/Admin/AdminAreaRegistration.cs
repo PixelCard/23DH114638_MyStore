@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace _23DH114638_MyStore.Areas.Admin
+namespace _23DH114638_WebMayTinh.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration 
     {
